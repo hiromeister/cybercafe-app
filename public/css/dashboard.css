@@ -1,0 +1,274 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+body {
+    padding-top: 50px;
+
+
+    font-family: 'Roboto', sans-serif;
+    
+    
+  }
+  
+  
+  /*
+   * Global add-ons
+   */
+  
+  .sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /*
+   * Top navigation
+   * Hide default border to remove 1px line.
+   */
+  .navbar-fixed-top {
+    border: 0;
+  }
+  
+  /*
+   * Sidebar
+   */
+  
+  /* Hide for mobile, show later */
+  .sidebar {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .sidebar {
+      position: fixed;
+      top: 51px;
+      bottom: 0;
+      left: 0;
+      z-index: 1000;
+      display: block;
+      padding: 20px;
+      overflow-x: hidden;
+      overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+      border-right: 1px solid #eee;
+    }
+  }
+  
+  /* Sidebar navigation */
+  .nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+  }
+  .nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  
+  
+  /*
+   * Main content
+   */
+  
+  .main {
+    padding: 20px;
+    background-color: #F9F9F9;
+  }
+  @media (min-width: 768px) {
+    .main {
+      padding-right: 40px;
+      padding-left: 40px;
+    }
+  }
+  .main .page-header {
+    margin-top: 0;
+  }
+  
+  
+  /*
+   * Placeholder dashboard ideas
+   */
+  
+  .placeholders {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .placeholders h4 {
+    margin-bottom: 0;
+  }
+  .placeholder {
+    margin-bottom: 20px;
+  }
+  .placeholder img {
+    display: inline-block;
+    border-radius: 50%;
+  }
+  
+
+  i{
+      color: #2FD782;
+  }
+
+  li a {
+      color: #777777;
+      font-weight: bold;
+      font-size: 16px;
+      
+  }
+
+  th{
+    color: #2FD782;
+
+  }
+
+  td{
+
+      vertical-align: middle;
+  }
+
+  .addbtn {
+      font-weight: bold;
+      border: 0px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 1px 1px rgba(0,0,0,0.23);
+      width: 160px;
+      height: 50px;
+      font-size: 15px;
+      margin-top: 30px;
+      
+  }
+
+  .card {
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
+    background-color: #FFFFFF;
+    margin-bottom: 30px;
+}
+
+.table-responsive {
+    margin-top: 50px;
+}
+ 
+
+/* Début modal */ 
+
+/* CSS */
+.cf:before,
+.cf:after {
+  content:"";
+  display:table;
+}
+.cf:after {
+  clear:both;
+}
+.droite {
+  float:right;
+}
+ 
+.oModal {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+ 
+.oModal:target {
+  opacity:1;
+  pointer-events: auto;
+}
+ 
+.oModal:target > div {
+  margin: 10% auto;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+ 
+.oModal > div {
+  max-width: 900px;
+  position: relative;
+  margin: 1% auto;
+  padding: 8px 8px 8px 8px;
+  border-radius: 5px;
+  background:#fff;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+ 
+.oModal > div header,.oModal > div footer {
+  border-bottom: 1px solid #e7e7e7;
+  border-radius: 5px 5px 0 0;
+}
+.oModal .footer {
+  border:none;
+  border-top: 1px solid #e7e7e7;
+  border-radius: 0 0 5px 5px;
+}
+ 
+.oModal > div h2 {
+  margin:0;
+}
+ 
+.oModal > div .btn {
+  float:right;
+}
+ 
+.oModal > div section,.oModal > div > header, .oModal > div > footer {
+  padding:15px;
+}
+
+label{
+  margin-top: 30px;
+}
+
+footer { 
+  background-color: #F4F4F4;
+  width: 100%;
+}
+
+footer button {
+  width: 200px;
+  height: 40px;
+  border-radius: 3px;
+
+}
+
+.add{
+  background-color: #2FD782;
+  color: #fff;
+  border: 0px;
+  margin-left: 10px;
+}
+
+.cancel {
+  background-color: #fff;
+  color: #2FD782;
+  border: 0px;
+}
+
+/* Fin Modal */
+
+.cardz {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  margin-top: 30px;
+  background-color: #fff;
+}
+
+.cardz:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+button{
+  color: #2FD782;
+}

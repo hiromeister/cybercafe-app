@@ -1,7 +1,7 @@
 var numeral = require('numeral');
 var bcrypt = require('bcrypt-nodejs');
 var dateFormat = require('dateformat');
-
+/* 
 exports.loggedIn = function(req, res, next)
 {
 	if (req.session.user) { // req.session.passport._id
@@ -65,7 +65,24 @@ exports.login = function(req, res) {
 
 	}
 	
+} */
+
+class homeController{
+
+	loggedIn(req, res, next){
+		if(req.session.user){next(); }
+		else { res.redirect('/login'); }
+	}
+
+	home(req, res){
+		res.render('admin/dashboard.ejs');
+	}
+
+
+
 }
+
+module.exports = new homeController();
 
 
     
