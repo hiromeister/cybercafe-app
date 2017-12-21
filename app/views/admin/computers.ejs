@@ -49,18 +49,30 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#">Settings</a>
-                    </li>
-                    <li>
-                        <a href="#">Profile</a>
-                    </li>
-                    <li>
-                        <a href="#">Help</a>
-                    </li>
+                        <li>
+                                <a href="/">
+                                    <i class="fa fa-home" aria-hidden="true"> </i>
+                                    <span> Accueil </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/liste-ordinateurs">
+                                    <i class="fa  fa-desktop" aria-hidden="true"></i>
+                                    <span> Ordinateurs</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/liste-adherants">
+                                    <i class="fa  fa-users" aria-hidden="true"></i>
+                                    <span> Adherants</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa  fa-cogs" aria-hidden="true"></i>
+                                    <span> Paramètres</span>
+                                </a>
+                            </li>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -86,61 +98,56 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/liste-adhérants">
+                        <a href="/liste-adherants">
                             <i class="fa  fa-users" aria-hidden="true"></i>
                             <span> Adherants</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa  fa-cogs" aria-hidden="true"></i>
-                            <span> Paramètres</span>
-                        </a>
-                    </li>
+                    
                 </ul>
 
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div id="oModal" class="oModal">
+                <div id="oModal" class="oModal">
                     <div>
 
                         <a href="#fermer" title="Fermer la fenêtre" class="droite">X</a>
-                        <h2 style="font-weight: bold">Ajouter un adhérant </h2>
+                        <h2 style="font-weight: bold">Ajouter un ordinateur </h2>
 
                         <section>
                             <form action="/addcomputer" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label> Type </label>
-                                        <input type="text" name="type" class="form-control" placeholder="Username">
+                                        <input type="text" name="type" class="form-control" placeholder="">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label> Carte graphique </label>
-                                        <input name="gpu" type="text" class="form-control" placeholder="Username">
+                                        <input name="gpu" type="text" class="form-control" placeholder="">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label> Processeur </label>
-                                        <input name="cpu" type="text" class="form-control" placeholder="Username">
+                                        <input name="cpu" type="text" class="form-control" placeholder="">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label> Mémoire </label>
-                                        <input name="memory" type="text" class="form-control" placeholder="Username">
+                                        <input name="memory" type="text" class="form-control" placeholder="">
                                     </div>
                                 </div>
 
-                                 <div class="row">
+                                <div class="row">
                                     <div class="col-md-12">
                                         <label> Carte mère </label>
-                                        <input name="cm" type="text" class="form-control" placeholder="Username">
+                                        <input name="cm" type="text" class="form-control" placeholder="">
                                     </div>
                                 </div>
 
@@ -152,7 +159,7 @@
                         <footer class="cf">
 
                             <button class="pull-right add" action="submit">AJOUTER </button>
-                            <button class="pull-right cancel">ANNULER </button>
+                            <button class="pull-right cancel" action="#">ANNULER </button>
                             </form>
                         </footer>
                     </div>
@@ -164,65 +171,123 @@
                     <button class="addbtn btn-lg"> AJOUTER </button>
                 </a>
                 <div class="row">
-                     
+
                     <div class="col-md-12">
                         <div class="col-md-9">
-                            
-                            <h3> <i class="fa  fa-power-off" style="pull-right" aria-hidden="true"></i> Ordinateurs occupé</h3>
-                            <% for(var i = 0; i < computer.length; i++){ %>  
-                                <%if (computer[i].active == true) { %> 
-                            <a href="show-attribution/<%- computer[i]._id %>"><div class="cardz">
-                                <div class="row">
-                                    
-                                    <div class="col-md-12">
-                                        <div class="container">
-                                                
-                                                <h4>Type :  <%= computer[i].type %> </h4>
-                                                <p>Carte graphique :<%= computer[i].gpu %>  </p>
-                                                <p> Processeur :<%= computer[i].cpu %> </p>
-                                                <p>Carte mère :<%= computer[i].cm %> </p>
-                                                <p> Mémoire :<%= computer[i].memory %> </p>
-                                                <p> Utilisé par : </p>  
-                                                
-                                            
-                                        </div>
+
+                            <h3>
+                                <i class="fa  fa-power-off" style="pull-right" aria-hidden="true"></i> Occupé</h3>
+                            <% for(var i = 0; i < computers.length; i++){ %>
+                                <%if (computers[i].usedby.length > 0 ) { %>
+
+
+                                    <a href="edit/ordinateur/<%- computers[i]._id %>">
+                                        <div class="cardz">
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+                                                    <div class="container">
+                                                        <h4>Type :
+                                                            <%= computers[i].type %>
+                                                        </h4>
+                                                        <h5> Utilisé par :
+                                                            <%= computers[i].usedby %>
+                                                        </h5>
+                                                        <p>Carte graphique :
+                                                            <%= computers[i].gpu %>
+                                                        </p>
+                                                        <p> Processeur :
+                                                            <%= computers[i].cpu %>
+                                                        </p>
+                                                        <p>Carte mère :
+                                                            <%= computers[i].cm %>
+                                                        </p>
+                                                        <p> Mémoire :
+                                                            <%= computers[i].memory %>
+                                                        </p>
+
+
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </a>
+
+
                                     </div>
-                                </div></a>
 
-
-                            </div>
-                            <% } %>
-                            <% } %>
+                                    <% } %>
+                                        <% } %>
                         </div>
 
                         <div class="col-md-3">
 
-                            <h3> <i class="fa  fa-power-off" style="pull-right; color: #DFDFDF" aria-hidden="true"></i> Ordinateurs non utilisé</h3>
-                            <div class="cardz">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                       
-                                    </div>
-                                    <div class="col-md-10">
-                                            <p>Gtx 750Ti, ii7 3000ghz ,16go, Asus 9332</p>
-                                    </div>
-                                </div>
+                            <h3>
+                                <i class="fa  fa-power-off" style="pull-right; color: #DFDFDF" aria-hidden="true"></i> Non utilisé</h3>
+
+                            <div class="row">
 
 
+                                <% for(var i = 0; i < computers.length; i++){ %>
+
+                                    <%if ( computers[i].usedby <= 0 ) { %>
+
+                                        <a href="edit/ordinateur/<%- computers[i]._id %>">
+                                            <div class="cardz">
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <div class="container">
+
+                                                                <p>Type :
+                                                                        <%= computers[i].type %>
+                                                                    </p>
+
+                                                            <p>Carte graphique :
+                                                                <%= computers[i].gpu %>
+                                                            </p>
+                                                            <p> Processeur :
+                                                                <%= computers[i].cpu %>
+                                                            </p>
+                                                            <p>Carte mère :
+                                                                <%= computers[i].cm %>
+                                                            </p>
+                                                            <p> Mémoire :
+                                                                <%= computers[i].memory %>
+                                                            </p>
+
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </a>
+
+
+                                        </div>
+                                        <% } %>
+                                            <% } %>
                             </div>
-
-
                         </div>
-                    </div>
-               
-                </div>
 
+
+                    </div>
+
+
+                </div>
             </div>
+
         </div>
 
     </div>
+    </div>
 
-    
+    </div>
+
+
 
 
     <!-- Bootstrap core JavaScript

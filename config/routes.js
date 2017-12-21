@@ -16,11 +16,16 @@ module.exports = function (app, passport) {
     app.get('/', homeController.home);
     app.get('/liste-adherants', userController.list);
     app.get('/liste-ordinateurs', computerController.list);
-    app.get('/show-attribution/:id', computerController.showAttribution)
+    app.get('/edit/ordinateur/:id', computerController.showEdit)
+    app.get('/edit/utilisateur/:id', userController.showEdit);
 
     app.post('/adduser', userController.add);
+    app.post('/postedit/:id', computerController.edit);
     app.post('/addcomputer', computerController.add);
-    app.post('/attribution/:id', computerController.attribution )
+    app.post('/delete/computer/:id', computerController.delete);
+    app.post('/postedit/utilisateur/:id', userController.edit);
+    app.post('/delete/utilisateur/:id', userController.delete);
+    app.post('/inactive/:id', computerController.inactive);
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/home', // redirect to the secure profile section
@@ -33,6 +38,4 @@ module.exports = function (app, passport) {
         failureRedirect: '/login', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages
     }));
-
-
 }

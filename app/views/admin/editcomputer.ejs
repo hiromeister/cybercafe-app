@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+
+    <title>Cyber Café - Adhérants</title>
+
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+
+    <link href="css/dashboard.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/cdb0e95dfa.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+    <div class="container">
+  
+        <form action="/postedit/<%= computer._id %>" method="post">
+            <div class="form-group">
+                <label for="type"> Type de l'ordinateur </label>
+                <input type="text" name="type" class="form-control" value=" <%= computer.type %>">
+            </div>
+
+            <div class="form-group">
+                <label for="gpu"> gpu</label>
+                <input type="text" name="gpu" class="form-control"  value=" <%= computer.gpu %>">
+            </div>
+
+            <div class="form-group">
+                <label for="cpu"> cpu </label>
+                <input type="text" name="cpu" class="form-control"  value=" <%= computer.cpu %>">
+            </div>
+
+            <div class="form-group">
+                <label for="memory"> memory </label>
+                <input type="text" name="memory" class="form-control"  value=" <%= computer.memory %>">
+            </div>
+
+            <div class="form-group">
+                <label for="cm"> cm</label>
+                <input type="text" name="cm" class="form-control"  value=" <%= computer.cm %>">
+            </div>
+            <div class="form-group">
+            <% users.forEach(function(user){ %>
+        
+                <label>
+                        <%= user.name %>
+                    <input type="radio" name="usedby[]" value="<%= user._id %>"
+                     <% if( computer.usedby.indexOf(user._id) != -1 ) { %>
+                        checked 
+                     <% } %>
+                    >
+
+              
+                </label>
+            <% }); %>
+        </div>
+           
+            <button type="submit" class=" btn btn-success"> Mettre à jour</button>
+            <button type "submit" formaction="/delete/computer/<%= computer._id %>" class="btn btn-danger"> Delete </button>
+            <button type="submit" formaction="/inactive/<%= computer._id%>"  class="btn btn-warning"> Rendre inactif </button>            
+        </form>
+    </div>
+
+
+
+    <!-- <% for(let i = 0; i < computer.length; i++){ %>
+<p> <%= computer[i].type %> </p>
+<form action="/attribution/<%- computer[i]._id %> " method="post">
+    <input name="firstname" type="text" class="form-control" placeholder="Username">
+    <button action="submit" > Update </button>
+</form>
+
+<% } %> -->
+
+
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+
+</html>

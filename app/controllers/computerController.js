@@ -1,66 +1,59 @@
 var numeral = require('numeral');
 var bcrypt = require('bcrypt-nodejs');
 var dateFormat = require('dateformat');
-
-var Computer = require('../models/computer');
-var User = require('../models/user');
+var mongoose = require('mongoose');
+var Computer = require('../models/Computer');
+var User = require('../models/User');
 
 class computerController{
 
     list(req, res){
-      
-        Computer.find({}, function(err, computer){
-            res.render('admin/computers.ejs', {computer: computer});
+        User.find({}).then(users => {
+        Computer.find({}).populate('usedby').then(computers => {
+            res.render('admin/computers.ejs', { computers: computers, users: users });
+        });
+        })
+   
+    }
+
+    showEdit(req, res){
+        User.find({}).then( users => {
+          Computer.findById(req.params.id).then(computer =>{
+            res.render('admin/editcomputer.ejs', {computer:computer, users: users});
+            })    
         })
     }
 
-    add(req, res){
-
-        let computerCreated = new Computer({
-            type: req.body.type,
-            gpu : req.body.gpu,
-            cpu : req.body.cpu,
-            memory : req.body.memory,
-            cm : req.body.cm,
-            usedBy : null,
-
-        });
-        computerCreated.save()
-        .then(item => {
+    edit(req, res){
+        let computer = req.body;
+        Computer.findByIdAndUpdate({ _id: req.params.id }, computer, (err) =>{
+            if(err) throw err;
             res.redirect('/liste-ordinateurs');
         })
-        .catch(err => {
-            res.status(400).send("Impossible de sauvegarder dans la db");
-        })
     }
+       
+    add(req, res){
+        let computerCreated = new Computer(req.body);
+        computerCreated.save() .then(item => {
+            res.redirect('/liste-ordinateurs');
+           })
+       } 
 
-   /*  showAttribution(req, res){
-        Computer.find({_id: req.params.id}, (err, computer)=>{
-            res.render('admin/usedBy.ejs',{computer:computer});
-        })
-    }/ 
-
-    UsersModel.find().populate('computerId').exec(function(err, users) {
-        if (err) throw err;
-        console.log(users); // display users with affected computers if exists
-    }); */
-
-    showAttribution(req, res){
-        User.find({_id: req.params.id}).populate('computerId').exec(function(err, users){
-            if(err) throw err;
-            console.log(users);
-        })
-    }
-
-
-    attribution(req, res){
-        Computer.findByIdAndUpdate({_id: req.params.id}, {$set: {gpu: req.body.gpu}} , () => {
+   delete(req, res){
+       let computer = req.body;
+       Computer.findByIdAndRemove({_id: req.params.id}, computer, () => {
            res.redirect('/liste-ordinateurs');
-        })
+       })
+   }
 
-        
-    }
+   inactive(req, res){
+       Computer.findByIdAndUpdate({_id: req.params.id}, {$set:{usedby: [] }}, () => {
+           res.redirect('/liste-ordinateurs');
+       })
+   }
 
 }
 
 module.exports = new computerController();
+
+    

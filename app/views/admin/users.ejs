@@ -91,12 +91,7 @@
                             <span> Adhérants</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa  fa-cogs" aria-hidden="true"></i>
-                            <span> Paramètres</span>
-                        </a>
-                    </li>
+             
                 </ul>
 
             </div>
@@ -112,32 +107,19 @@
                             <form action="/adduser" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label> Prénom </label>
-                                        <input type="text" name="firstname" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
                                         <label> Nom </label>
-                                        <input name="lastname" type="text" class="form-control" placeholder="Username">
+                                        <input type="text" name="name" class="form-control" placeholder="">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label> Age </label>
-                                        <input name="age" type="text" class="form-control" placeholder="Username">
+                                        <input name="age" type="text" class="form-control" placeholder="">
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label> Adresse </label>
-                                        <input name="address" type="text" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-
+                              
 
 
 
@@ -164,28 +146,29 @@
                                 <tr>
 
                                     
-                                    <th>Prénom</th>
+                                   
                                     <th>Nom</th>
                                     <th>Age</th>
+                                    <th> Edit/Delete </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <% for(var i = 0; i < user.length; i++){ %>
                                     <tr>
                                         <td>
-                                            <%= user[i].firstname %>
+                                            <%= user[i].name %>
                                         </td>
 
-
-                                        <td>
-                                            <%= user[i].lastname %>
-                                        </td>
                                         <td>
                                             <%= user[i].age %>
                                         </td>
+
+                                        <td> 
+                                            <a href="/edit/utilisateur/<%= user[i]._id %> " ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        </td>
                                         
 
-                                    </tr>
+                                    </tr> 
 
                                     <%}%>
 

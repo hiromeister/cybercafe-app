@@ -6,21 +6,25 @@ var Schema = mongoose.Schema;
 
 var userSchema = mongoose.Schema({	
 
-	firstname: String,
-	lastname: String,
-	age: Number,
-	address: String,
-	mail: String,
+/*	name:String,
 	password: String,
 	status: String,
 	created_date: Date,
 	updated_date: Date,
 	active_hash: String,
-	role_id: { type: Number, default: 2 },
-	computerId:{ type: Schema.Types.ObjectId, ref: 'computer' }
+	role_id: { type: Number, default: 2 }, */
+	
+	name: String,
+	age : Number
 });
 
 
+userSchema.virtual('computers',{
+	ref:'computer',
+	localField: '_id',
+	foreignField:'usedBy'
+
+})
 
 //methods ======================
 //generating a hash

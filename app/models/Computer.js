@@ -9,8 +9,15 @@ var computerSchema = mongoose.Schema({
     cpu: String, 
     memory: String,
     cm: String,
-    usedBy : {type: Schema.Types.ObjectId, ref : "User"},
-    active: {type: Boolean, default:false}
+    active: {type: Boolean, default:false},
+    usedby : [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user',
+           
+        }
+    ]
+    
 	
 });
 
