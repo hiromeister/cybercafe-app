@@ -4,6 +4,8 @@ var app = express();
 var multer = require('multer')
 var constants = require('constants');
 var constant = require('./config/constants');
+const dotEnv = require('dotenv').load();
+
 
 
 var port = process.env.PORT || 8042;
