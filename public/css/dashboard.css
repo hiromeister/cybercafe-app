@@ -75,6 +75,7 @@ body {
   .main {
     padding: 20px;
     background-color: #F9F9F9;
+    height: 100vh;
   }
   @media (min-width: 768px) {
     .main {
@@ -276,4 +277,8 @@ footer button {
 
 button{
   color: #2FD782;
+}
+
+h3 {
+  margin-top: 60px;
 }
