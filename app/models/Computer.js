@@ -10,15 +10,10 @@ var computerSchema = mongoose.Schema({
     memory: String,
     cm: String,
     active: {type: Boolean, default:false},
-    usedby : [
-        {
+    usedby : [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user',
-           
-        }
-    ]
-    
-	
+        }]
 });
-
+    
 module.exports = mongoose.model('computer', computerSchema);

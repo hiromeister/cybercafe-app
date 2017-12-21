@@ -255,6 +255,9 @@ footer button {
   background-color: #fff;
   color: #2FD782;
   border: 0px;
+  width: 200px;
+  height: 40px;
+  border-radius: 3px;
 }
 
 /* Fin Modal */
